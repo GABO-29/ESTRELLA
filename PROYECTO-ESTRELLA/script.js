@@ -13,19 +13,19 @@ async function cargarFrases() {
         muro.innerHTML = ''; 
         data.forEach(item => {
             const div = document.createElement('div');
+            div.className = "fade-in-item";
             div.innerHTML = `<p class="scarface-style">"${item.texto}"</p>`;
             muro.appendChild(div);
         });
+        document.getElementById('loader-text').innerText = "Tu galaxia está lista ✨";
     }
 }
 
 function playAudio(url) {
-    if(url.startsWith('URL_')) return; 
+    if(url.includes('URL_')) return;
     const audio = new Audio(url);
-    audio.volume = 0.6;
+    audio.volume = 0.5; // Muy importante para la clínica
     audio.play();
 }
 
 cargarFrases();
-// Recargar frases cada 30 segundos por si añades una nueva mientras ella mira
-setInterval(cargarFrases, 30000);

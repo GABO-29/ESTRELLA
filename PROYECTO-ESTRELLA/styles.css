@@ -1,19 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap');
 
 body {
-    background: #030308;
-    color: #fff;
-    margin: 0;
+    background: #030308; /* Negro profundo para no cansar la vista */
+    color: #eee;
     font-family: 'Inter', sans-serif;
-    overflow-x: hidden;
+    cursor: url('https://api.iconify.design/mdi:star-four-points.svg?color=%23a855f7&width=24'), auto;
 }
 
 #stars {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
-    opacity: 0.2;
-    animation: spaceMove 150s linear infinite;
+    background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+    opacity: 0.15;
+    animation: spaceMove 200s linear infinite;
     z-index: 0;
 }
 
@@ -22,51 +21,39 @@ body {
     to { background-position: -10000px 5000px; }
 }
 
-.glow-text {
-    text-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
-}
-
-/* Frases Scarface Mejoradas */
+/* Subtítulos Scarface */
 .scarface-style {
     color: #ffeb3b;
     text-shadow: 3px 3px 0px #000;
     font-weight: 900;
     text-align: center;
-    line-height: 1.2;
+    line-height: 1.1;
     text-transform: uppercase;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     letter-spacing: 1px;
-    animation: fadeIn 1s ease-out;
 }
 
-.control-btn {
-    text-align: center;
-    transition: transform 0.2s ease;
+.glow-purple { text-shadow: 0 0 15px rgba(168, 85, 247, 0.6); }
+
+.btn-space {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    opacity: 0.8;
+    transition: all 0.3s;
 }
 
-.control-btn:active { transform: scale(0.9); }
+.btn-space:hover { opacity: 1; transform: translateY(-3px); }
 
-.btn-label {
-    display: block;
-    font-size: 8px;
-    font-weight: 900;
-    letter-spacing: 2px;
-    margin-top: 5px;
-    color: #888;
-}
-
-/* Animaciones */
+/* Animaciones de flotado para no saturar */
 .float { animation: floating 4s ease-in-out infinite; }
-.float-delayed { animation: floating 4s ease-in-out infinite; animation-delay: 2s; }
+.float-slow { animation: floating 6s ease-in-out infinite; }
+.float-delayed { animation: floating 5s ease-in-out infinite; animation-delay: 2s; }
 
 @keyframes floating {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    50% { transform: translateY(-12px); }
 }
 
 .font-mora { font-family: 'Georgia', serif; }
