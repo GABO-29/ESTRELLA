@@ -3,54 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tu Galaxia de Recuperación 🌟</title>
+    <title>Nuestro Universo de Paz 🌟</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="min-h-screen flex flex-col items-center overflow-x-hidden">
+<body class="min-h-screen flex flex-col items-center">
 
     <div id="stars"></div>
 
-    <header class="text-center mt-12 z-10 px-4">
-        <h1 class="text-5xl font-bold tracking-tighter text-purple-400 italic font-mora">ESTRELLA</h1>
-        <p class="text-gray-400 text-[10px] tracking-[0.4em] uppercase mt-2">Misión de Recuperación • Modo Tarde</p>
+    <header class="text-center mt-12 z-10">
+        <h1 class="text-6xl font-black tracking-tighter text-purple-500 italic font-mora glow-text">ESTRELLA</h1>
+        <p class="text-gray-400 text-[10px] tracking-[0.5em] uppercase mt-3">Nuestro Universo de Paz</p>
     </header>
 
-    <div class="relative w-full max-w-sm h-80 mt-6 z-10">
-        <div class="absolute top-0 left-10 float" style="animation-delay: 0.5s;">
-            <img src="https://api.iconify.design/rio:itachi-uchiha-fill.svg?color=%23ff0000" class="w-16 opacity-80" alt="Itachi">
-            <p class="text-[8px] text-red-500 font-bold bg-black/60 px-2 rounded-full text-center mt-1">SHARINGAN</p>
-        </div>
-
-        <div class="absolute top-20 right-10 float">
-            <span class="text-5xl">😈</span>
-            <p class="text-[8px] text-purple-400 font-bold bg-black/60 px-2 rounded-full text-center mt-1">THE WORLD IS YOURS</p>
-        </div>
-        
-        <div class="absolute bottom-5 left-1/2 -translate-x-1/2 float-delayed">
-            <span class="text-5xl">🐾</span>
-            <p class="text-[8px] text-blue-300 font-bold bg-black/60 px-2 rounded-full text-center mt-1">CALM MODE</p>
-        </div>
-
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-150 opacity-40">
+    <div class="relative w-full max-w-sm h-72 mt-10 z-10 flex items-center justify-center">
+        <div class="absolute z-20 animate-pulse scale-125">
             <span class="text-6xl">⭐</span>
+        </div>
+
+        <div class="absolute top-0 left-10 text-center float">
+            <img src="https://api.iconify.design/rio:itachi-uchiha-fill.svg?color=%23ff4444" class="w-14 mx-auto opacity-90">
+            <span class="text-[8px] font-bold text-red-500 uppercase">Itachi</span>
+        </div>
+
+        <div class="absolute top-0 right-10 text-center float-delayed">
+            <span class="text-5xl block">😈</span>
+            <span class="text-[8px] font-bold text-purple-400 uppercase">Kuromi</span>
+        </div>
+
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 text-center float">
+            <span class="text-5xl block">🐾</span>
+            <span class="text-[8px] font-bold text-blue-300 uppercase">Snoopy</span>
         </div>
     </div>
 
-    <main id="muro" class="w-full max-w-md px-8 z-10 mt-4 mb-40 space-y-10">
-        </main>
+    <main class="w-full max-w-md px-10 z-10 mt-6 mb-44">
+        <div id="muro" class="space-y-12">
+            </div>
+    </main>
 
-    <footer class="fixed bottom-4 w-[92%] max-w-md bg-black/60 backdrop-blur-2xl border border-white/10 p-6 rounded-[2.5rem] z-20 shadow-2xl">
-        <div class="grid grid-cols-3 gap-3">
-            <button onclick="playAudio('URL_SCARFACE')" class="audio-btn border-yellow-600/30 text-yellow-500">
-                <span class="block text-xs">🎬</span> SCENE
+    <footer class="fixed bottom-6 w-[92%] max-w-md bg-white/5 backdrop-blur-2xl border border-white/10 p-6 rounded-[2.5rem] z-20 shadow-2xl">
+        <div class="flex justify-around items-center">
+            <button onclick="playAudio('URL_SCARFACE')" class="control-btn">
+                <span class="text-xl block">🎬</span>
+                <span class="btn-label">SCENE</span>
             </button>
-            <button onclick="playAudio('URL_VOZ')" class="audio-btn border-purple-600/30 text-purple-400">
-                <span class="block text-xs">🎤</span> VOZ
+            <div class="h-10 w-[1px] bg-white/10"></div>
+            <button onclick="playAudio('URL_VOZ')" class="control-btn">
+                <span class="text-xl block">🎤</span>
+                <span class="btn-label">VOZ</span>
             </button>
-            <button onclick="playAudio('URL_ITACHI')" class="audio-btn border-red-900/40 text-red-500">
-                <span class="block text-xs">👁️</span> ITACHI
+            <div class="h-10 w-[1px] bg-white/10"></div>
+            <button onclick="playAudio('URL_ITACHI')" class="control-btn">
+                <span class="text-xl block text-red-500">👁️</span>
+                <span class="btn-label text-red-500/80">ITACHI</span>
             </button>
         </div>
     </footer>

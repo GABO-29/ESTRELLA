@@ -10,11 +10,9 @@ async function cargarFrases() {
 
     if (data) {
         const muro = document.getElementById('muro');
-        muro.innerHTML = ''; // Limpiar
-        
+        muro.innerHTML = ''; 
         data.forEach(item => {
             const div = document.createElement('div');
-            div.className = "py-6 border-b border-white/5 animate-fade-in";
             div.innerHTML = `<p class="scarface-style">"${item.texto}"</p>`;
             muro.appendChild(div);
         });
@@ -22,10 +20,12 @@ async function cargarFrases() {
 }
 
 function playAudio(url) {
-    if(url.includes('URL_')) return alert("¡Te falta subir el audio a Supabase y pegar el link!");
+    if(url.startsWith('URL_')) return; 
     const audio = new Audio(url);
     audio.volume = 0.6;
     audio.play();
 }
 
 cargarFrases();
+// Recargar frases cada 30 segundos por si añades una nueva mientras ella mira
+setInterval(cargarFrases, 30000);
