@@ -1,59 +1,50 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap');
-
 body {
-    background: #030308; /* Negro profundo para no cansar la vista */
-    color: #eee;
+    background-color: #030308 !important; /* Forzamos el color oscuro */
+    margin: 0;
     font-family: 'Inter', sans-serif;
-    cursor: url('https://api.iconify.design/mdi:star-four-points.svg?color=%23a855f7&width=24'), auto;
 }
 
 #stars {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
     background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
-    opacity: 0.15;
-    animation: spaceMove 200s linear infinite;
-    z-index: 0;
+    opacity: 0.2;
+    animation: spaceMove 100s linear infinite;
 }
 
 @keyframes spaceMove {
     from { background-position: 0 0; }
-    to { background-position: -10000px 5000px; }
+    to { background-position: -5000px 5000px; }
 }
 
-/* Subtítulos Scarface */
+.glow-purple {
+    text-shadow: 0 0 20px rgba(168, 85, 247, 0.7);
+}
+
 .scarface-style {
     color: #ffeb3b;
     text-shadow: 3px 3px 0px #000;
     font-weight: 900;
     text-align: center;
-    line-height: 1.1;
+    line-height: 1.2;
     text-transform: uppercase;
     font-size: 1.4rem;
-    letter-spacing: 1px;
 }
 
-.glow-purple { text-shadow: 0 0 15px rgba(168, 85, 247, 0.6); }
-
-.btn-space {
+.btn-nav {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 4px;
-    opacity: 0.8;
-    transition: all 0.3s;
+    transition: transform 0.2s;
 }
 
-.btn-space:hover { opacity: 1; transform: translateY(-3px); }
+.btn-nav:active { transform: scale(0.9); }
 
-/* Animaciones de flotado para no saturar */
 .float { animation: floating 4s ease-in-out infinite; }
-.float-slow { animation: floating 6s ease-in-out infinite; }
-.float-delayed { animation: floating 5s ease-in-out infinite; animation-delay: 2s; }
+.float-delayed { animation: floating 4s ease-in-out infinite; animation-delay: 2s; }
 
 @keyframes floating {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
+    50% { transform: translateY(-15px); }
 }
-
-.font-mora { font-family: 'Georgia', serif; }
