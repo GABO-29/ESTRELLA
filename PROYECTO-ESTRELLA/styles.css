@@ -1,42 +1,51 @@
 body {
-    background: radial-gradient(circle at top, #1a1a2e 0%, #0d0d12 100%);
-    color: #e2e2e2;
+    background: #050508;
+    color: #fff;
+    margin: 0;
     font-family: 'Inter', sans-serif;
 }
 
-/* Estrellas de fondo sutiles */
-body::before {
-    content: "";
+#stars {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background-image: radial-gradient(white, rgba(255,255,255,.2) 1px, transparent 20px);
-    background-size: 200px 200px;
-    opacity: 0.05;
-    z-index: -1;
+    background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+    opacity: 0.2;
+    animation: space 120s linear infinite;
+    z-index: 0;
 }
 
-/* Estilo Subtítulos Scarface Amarillo */
+@keyframes space {
+    from { background-position: 0 0; }
+    to { background-position: -10000px 5000px; }
+}
+
 .scarface-style {
-    color: #ffeb3b;
+    color: #ffeb3b; /* Amarillo Subtítulo */
     text-shadow: 2px 2px 0px #000, -1px -1px 0px #000;
-    font-weight: 800;
-    text-transform: uppercase;
+    font-weight: 900;
     text-align: center;
-    line-height: 1.4;
+    line-height: 1.3;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
 }
 
-.frase-card {
-    background: rgba(255, 255, 255, 0.02);
-    padding: 20px;
-    border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+.audio-btn {
+    padding: 10px 5px;
+    border-radius: 18px;
+    border: 1px solid;
+    font-size: 9px;
+    font-weight: 800;
+    background: rgba(255, 255, 255, 0.03);
+    transition: all 0.3s ease;
 }
 
-.float {
-    animation: floating 3s ease-in-out infinite;
-}
+.float { animation: floating 4s ease-in-out infinite; }
+.float-delayed { animation: floating 5s ease-in-out infinite; animation-delay: 2s; }
 
 @keyframes floating {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(2deg); }
 }
+
+.font-mora { font-family: 'Georgia', serif; }
