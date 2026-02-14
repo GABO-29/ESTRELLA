@@ -1,29 +1,17 @@
 body, html { margin: 0; padding: 0; width: 100%; height: 100%; }
 
-#galaxyCanvas {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 1;
-}
+#galaxyCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
 
-.glow-purple {
-    text-shadow: 0 0 20px rgba(168, 85, 247, 0.8), 0 0 40px rgba(168, 85, 247, 0.4);
-}
+.glow-purple { text-shadow: 0 0 20px rgba(168, 85, 247, 0.8); }
 
 .char {
     position: absolute;
     cursor: pointer;
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    user-select: none;
+    transition: transform 0.3s ease;
     z-index: 35;
 }
 
-.char img {
-    filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.5));
-}
-
-.char:hover { transform: scale(1.1); }
+.char img { width: 120px; filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.4)); }
 
 /* Animaciones de Flotado */
 .float { animation: floating 5s ease-in-out infinite; }
@@ -34,28 +22,32 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; }
     50% { transform: translate(10px, -20px); }
 }
 
-/* Mensajes tipo TikTok */
-.msg-pop {
+/* La Nota Mágica (Estilo Árbol/Flor) */
+.magic-note {
     position: absolute;
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    padding: 10px 20px;
-    border-radius: 30px;
-    border: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 15px 20px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 20px rgba(168, 85, 247, 0.3);
+    color: white;
     font-weight: bold;
-    color: #FFC0CB;
-    pointer-events: none;
-    animation: popOut 3s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     z-index: 100;
-    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    animation: growNote 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    max-width: 250px;
+    text-align: center;
 }
 
-@keyframes popOut {
-    0% { opacity: 0; transform: scale(0.5) translateY(0); }
-    10% { opacity: 1; transform: scale(1.1) translateY(-20px); }
-    90% { opacity: 1; }
-    100% { opacity: 0; transform: scale(1) translateY(-100px); }
+.note-icon { font-size: 2.5rem; filter: drop-shadow(0 0 10px white); }
+
+@keyframes growNote {
+    0% { opacity: 0; transform: scale(0) rotate(-10deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); }
 }
 
-.btn { font-size: 10px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
+.btn { font-size: 10px; font-weight: 900; letter-spacing: 1px; }

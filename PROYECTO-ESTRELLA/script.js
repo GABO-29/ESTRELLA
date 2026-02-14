@@ -1,4 +1,3 @@
-// Configuración de la Galaxia
 const canvas = document.getElementById('galaxyCanvas');
 const ctx = canvas.getContext('2d');
 let stars = [];
@@ -7,11 +6,10 @@ function resize() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 }
-
 window.addEventListener('resize', resize);
 resize();
 
-// Crear estrellas
+// Estrellas
 for (let i = 0; i < 200; i++) {
     stars.push({
         x: Math.random() * canvas.width,
@@ -24,7 +22,6 @@ for (let i = 0; i < 200; i++) {
 function animate() {
     ctx.fillStyle = '#020205';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
     ctx.fillStyle = '#ffffff';
     stars.forEach(s => {
         ctx.beginPath();
@@ -37,28 +34,38 @@ function animate() {
 }
 animate();
 
-// Función de Mensajes Emergentes
-function popMessage(e, text) {
+// FUNCIÓN PARA ABRIR NOTA MÁGICA
+function openMagicNote(e, text, icon) {
+    // Evita que el clic se propague al fondo inmediatamente
+    e.stopPropagation();
+    
+    // Cerramos notas anteriores si queremos que solo haya una
+    closeAllMessages();
+
     const container = document.getElementById('messages-container');
-    const msg = document.createElement('div');
-    msg.className = 'msg-pop';
-    msg.innerText = text;
+    const note = document.createElement('div');
+    note.className = 'magic-note';
     
-    // Posición donde se hizo clic
-    msg.style.left = `${e.clientX}px`;
-    msg.style.top = `${e.clientY}px`;
+    // Creamos el contenido (Icono + Texto)
+    note.innerHTML = `
+        <div class="note-icon">${icon}</div>
+        <div class="note-text">${text}</div>
+    `;
     
-    container.appendChild(msg);
+    // Posición cerca del clic
+    note.style.left = `${e.clientX - 100}px`;
+    note.style.top = `${e.clientY - 120}px`;
     
-    setTimeout(() => {
-        msg.remove();
-    }, 3000);
+    container.appendChild(note);
 }
 
-// Reproducción de Audio
+// FUNCIÓN PARA CERRAR TODO AL TOCAR FUERA
+function closeAllMessages(event) {
+    const container = document.getElementById('messages-container');
+    container.innerHTML = '';
+}
+
 function playAudio(url) {
     if(!url || url.includes('URL_')) return;
-    const audio = new Audio(url);
-    audio.volume = 0.6; // Modo tarde: volumen suave
-    audio.play().catch(error => console.log("Error al reproducir audio:", error));
+    new Audio(url).play();
 }
