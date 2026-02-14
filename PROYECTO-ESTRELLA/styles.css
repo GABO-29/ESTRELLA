@@ -31,7 +31,7 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; }
     50% { transform: translate(10px, -20px); }
 }
 
-/* Mensajes tipo TikTok */
+/* Estilo de los mensajes tipo TikTok que dicen MONSE MONSE */
 .msg-pop {
     position: absolute;
     background: rgba(255, 255, 255, 0.1);
@@ -40,10 +40,11 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; }
     border-radius: 30px;
     border: 1px solid rgba(255,255,255,0.2);
     font-weight: bold;
-    color: #ffeb3b; /* Amarillo Scarface */
+    color: #ffeb3b; /* Color resaltante */
     pointer-events: none;
     animation: popOut 3s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94);
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    white-space: nowrap;
 }
 
 @keyframes popOut {
@@ -53,4 +54,4 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; }
     100% { opacity: 0; transform: scale(1) translateY(-100px); }
 }
 
-.btn { font-size: 10px; font-weight: 900; letter-spacing: 2px; }
+.btn { font-size: 10px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }

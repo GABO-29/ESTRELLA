@@ -11,7 +11,7 @@ function resize() {
 window.addEventListener('resize', resize);
 resize();
 
-// Crear estrellas
+// Crear estrellas para el fondo
 for (let i = 0; i < 200; i++) {
     stars.push({
         x: Math.random() * canvas.width,
@@ -22,7 +22,7 @@ for (let i = 0; i < 200; i++) {
 }
 
 function animate() {
-    ctx.fillStyle = '#020205';
+    ctx.fillStyle = '#020205'; // Fondo espacio profundo
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
     ctx.fillStyle = '#ffffff';
@@ -37,7 +37,7 @@ function animate() {
 }
 animate();
 
-// Función de Mensajes Emergentes
+// Función de Mensajes Emergentes "MONSE MONSE"
 function popMessage(e, text) {
     const container = document.getElementById('messages-container');
     const msg = document.createElement('div');
@@ -46,13 +46,17 @@ function popMessage(e, text) {
     msg.style.left = `${e.clientX}px`;
     msg.style.top = `${e.clientY}px`;
     container.appendChild(msg);
-    setTimeout(() => msg.remove(), 3000);
+    
+    // Eliminar el mensaje después de que termine la animación
+    setTimeout(() => {
+        msg.remove();
+    }, 3000);
 }
 
 // Reproducción de Audio
 function playAudio(url) {
-    if(url.includes('URL_')) return;
+    if(!url || url.includes('URL_')) return;
     const audio = new Audio(url);
-    audio.volume = 0.6;
-    audio.play();
+    audio.volume = 0.6; // Modo tarde: volumen moderado
+    audio.play().catch(error => console.log("Error al reproducir audio:", error));
 }
