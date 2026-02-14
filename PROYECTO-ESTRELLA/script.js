@@ -1,21 +1,21 @@
 let scene, camera, renderer, starGroup, characters = [];
 let isDragging = false;
 let previousMousePosition = { x: 0, y: 0 };
-let rotationVelocity = { x: 0.002, y: 0.002 }; // Rotación inicial suave
+let rotationVelocity = { x: 0.002, y: 0.002 };
 
-const phrases = [
-    "MONSE MONSE: ¡Eres mi paz! 💖",
-    "MONSE MONSE: Itachi te protege 🥷",
-    "MONSE MONSE: Todo estará bien 🐾",
-    "MONSE MONSE: El mundo es tuyo 🤵",
-    "MONSE MONSE: Eres mi estrella ⭐",
-    "MONSE MONSE: Te amo infinito 💜"
+// LISTA DE TUS PERSONAJES (Cámbialos por tus links o nombres de archivo)
+const characterImages = [
+    { url: 'https://i.imgur.com/your_kuromi.png', phrase: 'MONSE MONSE: ¡Energía explosiva! 😈' },
+    { url: 'https://i.imgur.com/your_itachi.png', phrase: 'MONSE MONSE: Te protejo siempre 🥷' },
+    { url: 'https://i.imgur.com/your_snoopy.png', phrase: 'MONSE MONSE: Calma y amor 🐾' },
+    { url: 'https://i.imgur.com/your_scarface.png', phrase: 'MONSE MONSE: El mundo es tuyo 🤵' },
+    { url: 'https://i.imgur.com/your_estrella.png', phrase: 'MONSE MONSE: Eres mi luz ⭐' }
 ];
 
 function init() {
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 5;
+    camera.position.z = 8;
 
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -25,37 +25,43 @@ function init() {
     starGroup = new THREE.Group();
     scene.add(starGroup);
 
-    // Galaxia 3D
+    // Crear Galaxia de 5000 estrellas
     const starGeometry = new THREE.BufferGeometry();
     const starVertices = [];
-    for (let i = 0; i < 4000; i++) {
-        starVertices.push((Math.random() - 0.5) * 25, (Math.random() - 0.5) * 25, (Math.random() - 0.5) * 25);
+    for (let i = 0; i < 5000; i++) {
+        starVertices.push((Math.random() - 0.5) * 30, (Math.random() - 0.5) * 30, (Math.random() - 0.5) * 30);
     }
     starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
     const starMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.03 });
     starGroup.add(new THREE.Points(starGeometry, starMaterial));
 
-    // Personajes interactivos
-    const emojis = ['😈', '🥷', '🐾', '🤵', '⭐', '😈'];
-    emojis.forEach((emoji, i) => {
-        const canvas = document.createElement('canvas');
-        canvas.width = 128; canvas.height = 128;
-        const ctx = canvas.getContext('2d');
-        ctx.font = '85px serif';
-        ctx.fillText(emoji, 20, 95);
-        
-        const texture = new THREE.CanvasTexture(canvas);
-        const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture }));
-        sprite.position.set((Math.random() - 0.5) * 8, (Math.random() - 0.5) * 8, (Math.random() - 0.5) * 8);
-        sprite.scale.set(0.9, 0.9, 1);
-        sprite.userData = { phrase: phrases[i % phrases.length] };
-        characters.push(sprite);
-        starGroup.add(sprite);
+    // CARGAR LOS MUÑEQUITOS
+    const loader = new THREE.TextureLoader();
+    characterImages.forEach((data) => {
+        loader.load(data.url, (texture) => {
+            const material = new THREE.SpriteMaterial({ map: texture, transparent: true });
+            const sprite = new THREE.Sprite(material);
+            
+            // Posición aleatoria en el espacio 3D
+            sprite.position.set((Math.random() - 0.5) * 10, (Math.random() - 0.5) * 10, (Math.random() - 0.5) * 10);
+            sprite.scale.set(1.5, 1.5, 1); // Tamaño de la imagen
+            sprite.userData = { phrase: data.phrase };
+            
+            characters.push(sprite);
+            starGroup.add(sprite);
+        });
     });
 
-    // Controles de Ratón y Táctil
-    const startAction = (x, y) => { isDragging = true; previousMousePosition = { x, y }; };
-    const moveAction = (x, y) => {
+    // Controles táctiles y ratón (Inercia)
+    setupControls();
+    window.addEventListener('click', onClick);
+    window.addEventListener('resize', onWindowResize);
+    animate();
+}
+
+function setupControls() {
+    const start = (x, y) => { isDragging = true; previousMousePosition = { x, y }; };
+    const move = (x, y) => {
         if (isDragging) {
             const deltaX = x - previousMousePosition.x;
             const deltaY = y - previousMousePosition.y;
@@ -65,20 +71,14 @@ function init() {
             previousMousePosition = { x, y };
         }
     };
-    const endAction = () => { isDragging = false; };
+    const end = () => isDragging = false;
 
-    window.addEventListener('mousedown', e => startAction(e.clientX, e.clientY));
-    window.addEventListener('mousemove', e => moveAction(e.clientX, e.clientY));
-    window.addEventListener('mouseup', endAction);
-    
-    window.addEventListener('touchstart', e => startAction(e.touches[0].clientX, e.touches[0].clientY));
-    window.addEventListener('touchmove', e => moveAction(e.touches[0].clientX, e.touches[0].clientY));
-    window.addEventListener('touchend', endAction);
-
-    // Clic para mensajes
-    window.addEventListener('click', onClick);
-    window.addEventListener('resize', onWindowResize);
-    animate();
+    window.addEventListener('mousedown', e => start(e.clientX, e.clientY));
+    window.addEventListener('mousemove', e => move(e.clientX, e.clientY));
+    window.addEventListener('mouseup', end);
+    window.addEventListener('touchstart', e => start(e.touches[0].clientX, e.touches[0].clientY));
+    window.addEventListener('touchmove', e => move(e.touches[0].clientX, e.touches[0].clientY));
+    window.addEventListener('touchend', end);
 }
 
 function onClick(event) {
@@ -108,14 +108,11 @@ function popMessage(x, y, text) {
 function animate() {
     requestAnimationFrame(animate);
     if (!isDragging) {
-        // Inercia: se sigue moviendo un poquito y frena suavemente
         starGroup.rotation.y += rotationVelocity.x;
         starGroup.rotation.x += rotationVelocity.y;
-        rotationVelocity.x *= 0.98;
+        rotationVelocity.x *= 0.98; // Rozamiento para que frene suave
         rotationVelocity.y *= 0.98;
-        
-        // Movimiento base si está casi quieto
-        if (Math.abs(rotationVelocity.x) < 0.001) rotationVelocity.x = 0.001;
+        if (Math.abs(rotationVelocity.x) < 0.0005) rotationVelocity.x = 0.0005;
     }
     renderer.render(scene, camera);
 }
@@ -127,7 +124,7 @@ function onWindowResize() {
 }
 
 function playAudio(url) {
-    if(url.includes('URL_')) return;
+    if(url.includes('LINK')) return;
     new Audio(url).play().catch(() => {});
 }
 
