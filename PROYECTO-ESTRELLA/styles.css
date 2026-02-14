@@ -1,121 +1,56 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap'); /* Fuente para los mensajes, como en el video */
+body, html { margin: 0; padding: 0; width: 100%; height: 100%; }
 
-body {
-    background-color: #050508 !important; /* Fondo negro profundo */
-    font-family: 'Inter', sans-serif;
-    color: #fff;
-    cursor: url('https://api.iconify.design/mdi:star-four-points.svg?color=%23a855f7&width=24'), auto; /* Cursor de estrella */
-}
-
-/* Fondo de Estrellas Múltiple para mayor profundidad y movimiento */
-#stars, #stars2, #stars3 {
+#galaxyCanvas {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
-    z-index: 0;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
 }
 
-#stars { opacity: 0.1; animation: spaceMove 150s linear infinite; }
-#stars2 { opacity: 0.15; animation: spaceMove 100s linear infinite reverse; background-size: 80px 80px; } /* Estrellas más grandes y lento */
-#stars3 { opacity: 0.2; animation: spaceMove 200s linear infinite; background-size: 120px 120px; } /* Estrellas aún más grandes y muy lento */
-
-@keyframes spaceMove {
-    from { background-position: 0 0; }
-    to { background-position: -10000px 5000px; } /* Movimiento largo para que parezca que viaja */
-}
-
-/* Título ESTRELLA con brillo */
 .glow-purple {
-    text-shadow: 0 0 25px rgba(168, 85, 247, 0.9), 0 0 50px rgba(168, 85, 247, 0.5);
-    font-family: 'Georgia', serif;
+    text-shadow: 0 0 20px rgba(168, 85, 247, 0.8), 0 0 40px rgba(168, 85, 247, 0.4);
 }
 
-/* Estilo para los personajes flotantes */
-.character-item {
+.char {
     position: absolute;
-    font-size: 3.5rem; /* Emojis grandes */
+    font-size: 4rem;
     cursor: pointer;
-    transition: transform 0.3s ease-out, filter 0.3s ease-out;
-    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3)); /* Sombra sutil */
-    z-index: 10;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
+    user-select: none;
 }
 
-.character-item:hover {
-    transform: scale(1.1) translateY(-5px); /* Efecto de "salir" */
-    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.7)); /* Sombra más intensa al pasar el mouse */
-}
+.char:hover { transform: scale(1.2); }
 
-/* Anillo central brillante y pulsante */
-.ring-pulse {
-    position: absolute;
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,0,255,0.3) 0%, rgba(255,0,255,0) 70%); /* Degradado para el efecto de brillo */
-    box-shadow: 0 0 50px rgba(255,0,255,0.7), 0 0 100px rgba(255,0,255,0.4); /* Brillo intenso */
-    animation: ringGlow 3s ease-out infinite alternate; /* Animación de pulsación */
-    z-index: 5;
-}
-
-@keyframes ringGlow {
-    from { transform: scale(0.9); opacity: 0.8; }
-    to { transform: scale(1.0); opacity: 1; }
-}
-
-/* Estilo de los mensajes flotantes (como en el video de TikTok) */
-.floating-message {
-    position: absolute;
-    background: rgba(255, 255, 255, 0.1); /* Fondo semitransparente */
-    backdrop-filter: blur(8px); /* Efecto de cristal esmerilado */
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    font-family: 'Pacifico', cursive; /* Fuente "romántica" */
-    color: #FFC0CB; /* Rosa San Valentín */
-    box-shadow: 0 0 15px rgba(255,0,255,0.5);
-    opacity: 0;
-    animation: messagePop 1s forwards ease-out, messageFade 5s linear forwards 2s; /* Aparece y luego se desvanece */
-    pointer-events: none; /* Crucial: permite clics a través del mensaje si está superpuesto */
-    z-index: 100;
-}
-
-@keyframes messagePop {
-    from { opacity: 0; transform: scale(0.5) translateY(20px); }
-    to { opacity: 1; transform: scale(1) translateY(0); }
-}
-
-@keyframes messageFade {
-    from { opacity: 1; }
-    to { opacity: 0; }
-}
-
-
-/* Estilo de los botones del footer */
-.audio-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    opacity: 0.8;
-    transition: all 0.3s;
-}
-
-.audio-card:hover { opacity: 1; transform: translateY(-3px); }
-
-.label {
-    font-size: 8px;
-    font-weight: 900;
-    letter-spacing: 2px;
-    margin-top: 6px;
-    opacity: 0.7;
-}
-
-/* Animaciones de flotado para los personajes */
-.float { animation: floating 4s ease-in-out infinite; }
-.float-delayed { animation: floating 4s ease-in-out infinite; animation-delay: 2s; }
+/* Animaciones de Flotado */
+.float { animation: floating 5s ease-in-out infinite; }
+.float-delayed { animation: floating 6s ease-in-out infinite; animation-delay: 2s; }
 
 @keyframes floating {
-    0%, 100% { transform: translateY(0) translateX(0); }
-    50% { transform: translateY(-15px) translateX(5px); } /* Flota un poco en diagonal */
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(10px, -20px); }
 }
+
+/* Mensajes tipo TikTok */
+.msg-pop {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 1px solid rgba(255,255,255,0.2);
+    font-weight: bold;
+    color: #ffeb3b; /* Amarillo Scarface */
+    pointer-events: none;
+    animation: popOut 3s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+@keyframes popOut {
+    0% { opacity: 0; transform: scale(0.5) translateY(0); }
+    10% { opacity: 1; transform: scale(1.1) translateY(-20px); }
+    90% { opacity: 1; }
+    100% { opacity: 0; transform: scale(1) translateY(-100px); }
+}
+
+.btn { font-size: 10px; font-weight: 900; letter-spacing: 2px; }
