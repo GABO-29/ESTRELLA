@@ -1,82 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; }
 
-body {
-    background-color: #050508 !important;
-    font-family: 'Inter', sans-serif;
-    color: #fff;
-}
-
-/* Galaxia con profundidad original */
-#stars, #stars2, #stars3 {
+#container3d {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
-    z-index: 0;
-}
-#stars { opacity: 0.1; animation: spaceMove 150s linear infinite; }
-#stars2 { opacity: 0.15; animation: spaceMove 100s linear infinite reverse; background-size: 80px 80px; }
-#stars3 { opacity: 0.2; animation: spaceMove 200s linear infinite; background-size: 120px 120px; }
-
-@keyframes spaceMove {
-    from { background-position: 0 0; }
-    to { background-position: -10000px 5000px; }
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
 }
 
 .glow-purple {
-    text-shadow: 0 0 25px rgba(168, 85, 247, 0.9), 0 0 50px rgba(168, 85, 247, 0.5);
+    text-shadow: 0 0 20px rgba(168, 85, 247, 0.8), 0 0 40px rgba(168, 85, 247, 0.4);
 }
 
-.character-item {
-    position: absolute;
-    font-size: 3.5rem;
-    cursor: pointer;
-    transition: all 0.3s ease-out;
-    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
-    z-index: 10;
-}
-
-.character-item:hover { transform: scale(1.2); }
-
-.ring-pulse {
-    position: absolute;
-    width: 250px; height: 250px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,0,255,0.3) 0%, rgba(255,0,255,0) 70%);
-    box-shadow: 0 0 50px rgba(255,0,255,0.7);
-    animation: ringGlow 3s ease-out infinite alternate;
-}
-
-@keyframes ringGlow {
-    from { transform: scale(0.9); opacity: 0.8; }
-    to { transform: scale(1.0); opacity: 1; }
-}
-
-.floating-message {
+/* Mensajes tipo TikTok */
+.msg-pop {
     position: absolute;
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(8px);
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-family: 'Pacifico', cursive;
-    color: #FFC0CB;
-    box-shadow: 0 0 15px rgba(255,0,255,0.5);
-    animation: messagePop 1s forwards ease-out, messageFade 5s linear forwards 2s;
+    backdrop-filter: blur(10px);
+    padding: 12px 24px;
+    border-radius: 30px;
+    border: 1px solid rgba(255,255,255,0.2);
+    font-weight: bold;
+    color: #FFC0CB; /* Rosa romántico */
+    pointer-events: none;
+    animation: popOut 3s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     z-index: 100;
 }
 
-@keyframes messagePop {
-    from { opacity: 0; transform: scale(0.5) translateY(20px); }
-    to { opacity: 1; transform: scale(1) translateY(0); }
+@keyframes popOut {
+    0% { opacity: 0; transform: scale(0.5) translateY(0); }
+    10% { opacity: 1; transform: scale(1.1) translateY(-20px); }
+    90% { opacity: 1; }
+    100% { opacity: 0; transform: scale(1) translateY(-100px); }
 }
 
-@keyframes messageFade {
-    to { opacity: 0; transform: translateY(-50px); }
-}
-
-.float { animation: floating 4s ease-in-out infinite; }
-.float-delayed { animation: floating 4s ease-in-out infinite; animation-delay: 2s; }
-@keyframes floating {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-}
+.btn { font-size: 10px; font-weight: 900; letter-spacing: 2px; }
