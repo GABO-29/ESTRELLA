@@ -2,24 +2,24 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuestro Universo 3D 🌟</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Universo de Monse 🌟</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-[#020205] text-white min-h-screen overflow-hidden">
+<body class="bg-[#020205] text-white min-h-screen overflow-hidden touch-none">
 
     <div id="container3d"></div>
 
     <header class="fixed top-8 w-full text-center z-50 pointer-events-none">
-        <h1 class="text-6xl font-black italic text-purple-500 glow-purple font-serif">ESTRELLA</h1>
-        <p class="text-gray-400 text-[10px] tracking-[0.5em] uppercase mt-2">Universo 3D de Paz</p>
+        <h1 class="text-5xl md:text-7xl font-black italic text-purple-500 glow-purple font-serif">ESTRELLA</h1>
+        <p class="text-gray-400 text-[10px] tracking-[0.4em] uppercase mt-2">Arrastra para explorar nuestro mundo</p>
     </header>
 
     <div id="messages-container" class="fixed inset-0 pointer-events-none z-40"></div>
 
-    <footer class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md bg-black/60 backdrop-blur-xl border border-white/10 p-5 rounded-[2.5rem] z-50 flex justify-around shadow-2xl">
+    <footer class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[95%] max-w-md bg-black/40 backdrop-blur-xl border border-white/10 p-4 rounded-[2rem] z-50 flex justify-around shadow-2xl">
         <button onclick="playAudio('https://ruwtsbccogrcuhnegarx.supabase.co/storage/v1/object/public/AUDIO/tus%20ojos%20son%20zafiros%20deslumbrantes.mp3')" class="btn">🎤 ZAFIROS</button>
         <button onclick="playAudio('URL_SCARFACE')" class="btn">🎬 SCARFACE</button>
         <button onclick="playAudio('URL_ITACHI')" class="btn text-red-500">👁️ ITACHI</button>
