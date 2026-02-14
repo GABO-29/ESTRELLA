@@ -5,43 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nuestro Universo de Paz 🌟</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-[#050508] text-white min-h-screen flex flex-col items-center">
+<body class="bg-[#050508] text-white min-h-screen flex flex-col items-center overflow-hidden">
 
     <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
 
-    <header class="text-center mt-12 z-10 px-4">
+    <header class="text-center mt-8 z-20">
         <h1 class="text-6xl font-black italic text-purple-500 tracking-tighter glow-purple font-serif">ESTRELLA</h1>
         <p class="text-gray-500 text-[9px] tracking-[0.5em] uppercase mt-2">Nuestro Universo de Paz</p>
     </header>
 
-    <div class="relative w-full max-w-sm h-72 mt-10 z-10 flex items-center justify-center">
-        <div class="absolute top-0 left-8 text-center float">
-            <span class="text-5xl block">🥷</span>
-            <span class="text-[8px] font-bold text-red-600 uppercase">Guardián</span>
-        </div>
+    <div id="messages-container" class="fixed inset-0 flex items-center justify-center z-50 pointer-events-none"></div>
 
-        <div class="absolute top-0 right-8 text-center float-delayed">
-            <span class="text-5xl block">😈</span>
-            <span class="text-[8px] font-bold text-purple-400 uppercase">Energía</span>
-        </div>
+    <div class="relative w-full max-w-lg h-[600px] mt-4 z-20">
+        <div id="char-kuromi-1" class="character-item float" style="top: 10%; left: 15%;">😈</div>
+        <div id="char-itachi-1" class="character-item float-delayed" style="top: 25%; right: 20%;">🥷</div>
+        <div id="char-snoopy-1" class="character-item float" style="top: 40%; left: 10%;">🐾</div>
+        <div id="char-scarface-1" class="character-item float-delayed" style="top: 55%; right: 15%;">🤵</div>
+        <div id="char-kuromi-2" class="character-item float" style="top: 70%; left: 25%;">😈</div>
+        <div id="char-estrella-1" class="character-item float-delayed" style="top: 35%; left: 45%;">⭐</div>
+        <div id="char-itachi-2" class="character-item float" style="top: 60%; left: 5%;">🥷</div>
+        <div id="char-snoopy-2" class="character-item float-delayed" style="top: 15%; right: 5%;">🐾</div>
 
-        <div class="relative z-20 animate-pulse">
-            <span class="text-7xl drop-shadow-[0_0_30px_rgba(168,85,247,0.8)]">⭐</span>
-        </div>
-
-        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 text-center float">
-            <span class="text-5xl block">🐾</span>
-            <span class="text-[8px] font-bold text-blue-300 uppercase">Paz</span>
+        <div class="absolute inset-0 flex items-center justify-center">
+            <div class="ring-pulse"></div>
         </div>
     </div>
-
-    <main id="muro" class="w-full max-w-md px-8 z-10 mt-6 mb-44 space-y-12 text-center">
-        </main>
-
-    <footer class="fixed bottom-6 w-[92%] max-w-md bg-black/80 backdrop-blur-xl border border-white/10 p-5 rounded-[2.5rem] z-20 shadow-2xl">
+    
+    <footer class="fixed bottom-6 w-[92%] max-w-md bg-black/80 backdrop-blur-xl border border-white/10 p-5 rounded-[2.5rem] z-30 shadow-2xl">
         <div class="flex justify-around items-center">
             <button onclick="playAudio('https://ruwtsbccogrcuhnegarx.supabase.co/storage/v1/object/public/AUDIO/tus%20ojos%20son%20zafiros%20deslumbrantes.mp3')" class="audio-card text-purple-400">
                 <span class="text-2xl">🎤</span>
@@ -50,14 +44,14 @@
             
             <div class="h-10 w-[1px] bg-white/10"></div>
             
-            <button onclick="playAudio('PON_AQUI_OTRO_LINK')" class="audio-card text-yellow-500">
+            <button onclick="playAudio('URL_SCARFACE_AUDIO')" class="audio-card text-yellow-500">
                 <span class="text-2xl">🎬</span>
                 <span class="label">SCARFACE</span>
             </button>
 
             <div class="h-10 w-[1px] bg-white/10"></div>
 
-            <button onclick="playAudio('PON_AQUI_LINK_ITACHI')" class="audio-card text-red-500">
+            <button onclick="playAudio('URL_ITACHI_AUDIO')" class="audio-card text-red-500">
                 <span class="text-2xl">👁️</span>
                 <span class="label">ITACHI</span>
             </button>
