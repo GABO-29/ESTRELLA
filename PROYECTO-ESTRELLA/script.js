@@ -3,13 +3,12 @@ let isDragging = false;
 let previousMousePosition = { x: 0, y: 0 };
 let rotationVelocity = { x: 0.002, y: 0.002 };
 
-// LISTA DE TUS PERSONAJES (Cámbialos por tus links o nombres de archivo)
-const characterImages = [
-    { url: 'https://i.imgur.com/your_kuromi.png', phrase: 'MONSE MONSE: ¡Energía explosiva! 😈' },
-    { url: 'https://i.imgur.com/your_itachi.png', phrase: 'MONSE MONSE: Te protejo siempre 🥷' },
-    { url: 'https://i.imgur.com/your_snoopy.png', phrase: 'MONSE MONSE: Calma y amor 🐾' },
-    { url: 'https://i.imgur.com/your_scarface.png', phrase: 'MONSE MONSE: El mundo es tuyo 🤵' },
-    { url: 'https://i.imgur.com/your_estrella.png', phrase: 'MONSE MONSE: Eres mi luz ⭐' }
+// 1. CONFIGURACIÓN DE TUS PERSONAJES
+const characterData = [
+    { url: 'kuromi.png', phrase: 'MONSE MONSE: ¡Energía explosiva! 😈' },
+    { url: 'snoopy.png', phrase: 'MONSE MONSE: Calma y amor puro 🐾' },
+    { url: 'kuromi.png', phrase: 'MONSE MONSE: ¡Eres mi universo! 💖' }, // Puedes repetir o añadir más
+    { url: 'snoopy.png', phrase: 'MONSE MONSE: Todo estará bien ⭐' }
 ];
 
 function init() {
@@ -25,39 +24,42 @@ function init() {
     starGroup = new THREE.Group();
     scene.add(starGroup);
 
-    // Crear Galaxia de 5000 estrellas
+    // 2. CREAR ESTRELLAS DE FONDO
     const starGeometry = new THREE.BufferGeometry();
     const starVertices = [];
-    for (let i = 0; i < 5000; i++) {
+    for (let i = 0; i < 4000; i++) {
         starVertices.push((Math.random() - 0.5) * 30, (Math.random() - 0.5) * 30, (Math.random() - 0.5) * 30);
     }
     starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
     const starMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.03 });
     starGroup.add(new THREE.Points(starGeometry, starMaterial));
 
-    // CARGAR LOS MUÑEQUITOS
+    // 3. CARGAR LAS IMÁGENES QUE SUBISTE
     const loader = new THREE.TextureLoader();
-    characterImages.forEach((data) => {
+    characterData.forEach((data) => {
         loader.load(data.url, (texture) => {
             const material = new THREE.SpriteMaterial({ map: texture, transparent: true });
             const sprite = new THREE.Sprite(material);
             
-            // Posición aleatoria en el espacio 3D
-            sprite.position.set((Math.random() - 0.5) * 10, (Math.random() - 0.5) * 10, (Math.random() - 0.5) * 10);
-            sprite.scale.set(1.5, 1.5, 1); // Tamaño de la imagen
+            // Posicionarlos aleatoriamente en el espacio
+            sprite.position.set((Math.random() - 0.5) * 12, (Math.random() - 0.5) * 12, (Math.random() - 0.5) * 12);
+            sprite.scale.set(2, 2, 1); // Ajusta el tamaño aquí (2 es el doble de grande)
             sprite.userData = { phrase: data.phrase };
             
             characters.push(sprite);
             starGroup.add(sprite);
+        }, undefined, (err) => {
+            console.error("No se pudo cargar la imagen: " + data.url);
         });
     });
 
-    // Controles táctiles y ratón (Inercia)
     setupControls();
     window.addEventListener('click', onClick);
     window.addEventListener('resize', onWindowResize);
     animate();
 }
+
+// --- LÓGICA DE MOVIMIENTO E INTERACCIÓN ---
 
 function setupControls() {
     const start = (x, y) => { isDragging = true; previousMousePosition = { x, y }; };
@@ -110,7 +112,7 @@ function animate() {
     if (!isDragging) {
         starGroup.rotation.y += rotationVelocity.x;
         starGroup.rotation.x += rotationVelocity.y;
-        rotationVelocity.x *= 0.98; // Rozamiento para que frene suave
+        rotationVelocity.x *= 0.98; 
         rotationVelocity.y *= 0.98;
         if (Math.abs(rotationVelocity.x) < 0.0005) rotationVelocity.x = 0.0005;
     }
@@ -124,7 +126,7 @@ function onWindowResize() {
 }
 
 function playAudio(url) {
-    if(url.includes('LINK')) return;
+    if(url.includes('URL_')) return;
     new Audio(url).play().catch(() => {});
 }
 
