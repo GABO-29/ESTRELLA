@@ -1,3 +1,4 @@
+// --- 1. CONFIGURACIÓN DE LA GALAXIA ---
 const canvas = document.getElementById('galaxyCanvas');
 const ctx = canvas.getContext('2d');
 let stars = [];
@@ -18,7 +19,7 @@ for (let i = 0; i < 200; i++) {
     });
 }
 
-function animate() {
+function animateGalaxy() {
     ctx.fillStyle = '#020205';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = '#ffffff';
@@ -29,15 +30,15 @@ function animate() {
         s.y -= s.speed;
         if (s.y < 0) s.y = canvas.height;
     });
-    requestAnimationFrame(animate);
+    requestAnimationFrame(animateGalaxy);
 }
-animate();
+animateGalaxy();
 
+// --- 2. LÓGICA DE LAS NOTAS MÁGICAS ---
 function openMagicNote(e, text, icon) {
-    e.stopPropagation(); // Evita cerrar la nota al momento de abrirla
-    
+    e.stopPropagation();
     const container = document.getElementById('messages-container');
-    container.innerHTML = ''; // Limpia notas anteriores
+    container.innerHTML = ''; // Cierra la anterior para no amontonar
     
     const note = document.createElement('div');
     note.className = 'magic-note';
@@ -46,10 +47,9 @@ function openMagicNote(e, text, icon) {
         <div class="note-text">${text}</div>
     `;
     
-    // Calculamos posición para que no se salga de la pantalla
+    // Posicionar cerca del toque
     let x = e.clientX - 100;
     let y = e.clientY - 150;
-    
     if (x < 10) x = 10;
     if (y < 10) y = 10;
 
@@ -61,10 +61,54 @@ function openMagicNote(e, text, icon) {
 
 function closeAllMessages(event) {
     const container = document.getElementById('messages-container');
-    // Solo cerramos si se toca fuera de una nota mágica
+    // Si toca fuera de la nota, se cierra
     if (!event.target.closest('.magic-note')) {
         container.innerHTML = '';
     }
+}
+
+// --- 3. LÓGICA DEL CINE (ESCENAS Y CORAZONES) ---
+let heartInterval;
+
+function playScene(videoUrl) {
+    const overlay = document.getElementById('video-overlay');
+    const video = document.getElementById('scene-video');
+    const source = document.getElementById('video-source');
+    
+    source.src = videoUrl;
+    video.load();
+    overlay.classList.remove('hidden');
+    video.play();
+    
+    startHeartRain();
+}
+
+function closeVideo() {
+    const overlay = document.getElementById('video-overlay');
+    const video = document.getElementById('scene-video');
+    video.pause();
+    overlay.classList.add('hidden');
+    stopHeartRain();
+}
+
+function startHeartRain() {
+    const container = document.getElementById('heart-rain');
+    heartInterval = setInterval(() => {
+        const heart = document.createElement('div');
+        heart.className = 'floating-heart';
+        const types = ['❤️', '💖', '💝', '🌸', '✨'];
+        heart.innerHTML = types[Math.floor(Math.random() * types.length)];
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        container.appendChild(heart);
+        
+        setTimeout(() => heart.remove(), 4000);
+    }, 150);
+}
+
+function stopHeartRain() {
+    clearInterval(heartInterval);
+    document.getElementById('heart-rain').innerHTML = '';
 }
 
 function playAudio(url) {
