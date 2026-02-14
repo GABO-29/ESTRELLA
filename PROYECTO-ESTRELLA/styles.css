@@ -8,12 +8,19 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; }
     position: absolute;
     cursor: pointer;
     transition: transform 0.3s ease;
-    z-index: 35;
+    z-index: 30; /* Capa superior a la galaxia */
+    display: block;
 }
 
-.char img { width: 120px; filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.4)); }
+.char img { 
+    width: 120px; 
+    filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.4));
+    pointer-events: none; /* Hace que el clic pase al div padre .char */
+}
 
-/* Animaciones de Flotado */
+.char:hover { transform: scale(1.1); }
+
+/* Animaciones */
 .float { animation: floating 5s ease-in-out infinite; }
 .float-delayed { animation: floating 6s ease-in-out infinite; animation-delay: 2s; }
 
@@ -22,7 +29,7 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; }
     50% { transform: translate(10px, -20px); }
 }
 
-/* La Nota Mágica (Estilo Árbol/Flor) */
+/* Nota Mágica */
 .magic-note {
     position: absolute;
     background: rgba(255, 255, 255, 0.1);
@@ -30,10 +37,9 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; }
     border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 15px 20px;
     border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 20px rgba(168, 85, 247, 0.3);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
     color: white;
     font-weight: bold;
-    z-index: 100;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,9 +47,10 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; }
     animation: growNote 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     max-width: 250px;
     text-align: center;
+    pointer-events: auto; /* IMPORTANTE: Permite interactuar con la nota */
 }
 
-.note-icon { font-size: 2.5rem; filter: drop-shadow(0 0 10px white); }
+.note-icon { font-size: 2.5rem; }
 
 @keyframes growNote {
     0% { opacity: 0; transform: scale(0) rotate(-10deg); }

@@ -9,7 +9,6 @@ function resize() {
 window.addEventListener('resize', resize);
 resize();
 
-// Estrellas
 for (let i = 0; i < 200; i++) {
     stars.push({
         x: Math.random() * canvas.width,
@@ -34,35 +33,38 @@ function animate() {
 }
 animate();
 
-// FUNCIÓN PARA ABRIR NOTA MÁGICA
 function openMagicNote(e, text, icon) {
-    // Evita que el clic se propague al fondo inmediatamente
-    e.stopPropagation();
+    e.stopPropagation(); // Evita cerrar la nota al momento de abrirla
     
-    // Cerramos notas anteriores si queremos que solo haya una
-    closeAllMessages();
-
     const container = document.getElementById('messages-container');
+    container.innerHTML = ''; // Limpia notas anteriores
+    
     const note = document.createElement('div');
     note.className = 'magic-note';
-    
-    // Creamos el contenido (Icono + Texto)
     note.innerHTML = `
         <div class="note-icon">${icon}</div>
         <div class="note-text">${text}</div>
     `;
     
-    // Posición cerca del clic
-    note.style.left = `${e.clientX - 100}px`;
-    note.style.top = `${e.clientY - 120}px`;
+    // Calculamos posición para que no se salga de la pantalla
+    let x = e.clientX - 100;
+    let y = e.clientY - 150;
+    
+    if (x < 10) x = 10;
+    if (y < 10) y = 10;
+
+    note.style.left = `${x}px`;
+    note.style.top = `${y}px`;
     
     container.appendChild(note);
 }
 
-// FUNCIÓN PARA CERRAR TODO AL TOCAR FUERA
 function closeAllMessages(event) {
     const container = document.getElementById('messages-container');
-    container.innerHTML = '';
+    // Solo cerramos si se toca fuera de una nota mágica
+    if (!event.target.closest('.magic-note')) {
+        container.innerHTML = '';
+    }
 }
 
 function playAudio(url) {
