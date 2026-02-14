@@ -8,52 +8,58 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-[#030308] text-white min-h-screen flex flex-col items-center overflow-x-hidden">
+<body class="bg-[#050508] text-white min-h-screen flex flex-col items-center">
 
     <div id="stars"></div>
 
-    <header class="text-center mt-12 z-10">
-        <h1 class="text-6xl font-black italic text-purple-500 tracking-tighter glow-purple">ESTRELLA</h1>
-        <p class="text-gray-400 text-[10px] tracking-[0.5em] uppercase mt-2">Nuestro Universo de Paz</p>
+    <header class="text-center mt-12 z-10 px-4">
+        <h1 class="text-6xl font-black italic text-purple-500 tracking-tighter glow-purple font-serif">ESTRELLA</h1>
+        <p class="text-gray-500 text-[9px] tracking-[0.5em] uppercase mt-2">Nuestro Universo de Paz</p>
     </header>
 
-    <div class="relative w-full max-w-sm h-80 mt-10 z-10 flex items-center justify-center">
-        <div class="absolute top-0 left-6 text-center float">
+    <div class="relative w-full max-w-sm h-72 mt-10 z-10 flex items-center justify-center">
+        <div class="absolute top-0 left-8 text-center float">
             <span class="text-5xl block">🥷</span>
-            <span class="text-[8px] font-bold text-red-500 uppercase tracking-tighter">Guardián</span>
+            <span class="text-[8px] font-bold text-red-600 uppercase">Guardián</span>
         </div>
 
-        <div class="absolute top-10 right-6 text-center float-delayed">
+        <div class="absolute top-0 right-8 text-center float-delayed">
             <span class="text-5xl block">😈</span>
-            <span class="text-[8px] font-bold text-purple-400 uppercase tracking-tighter">Energía</span>
+            <span class="text-[8px] font-bold text-purple-400 uppercase">Energía</span>
         </div>
 
         <div class="relative z-20 animate-pulse">
-            <span class="text-7xl drop-shadow-[0_0_25px_rgba(255,255,255,0.8)]">⭐</span>
+            <span class="text-7xl drop-shadow-[0_0_30px_rgba(168,85,247,0.8)]">⭐</span>
         </div>
 
-        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 text-center float">
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 text-center float">
             <span class="text-5xl block">🐾</span>
-            <span class="text-[8px] font-bold text-blue-300 uppercase tracking-tighter">Calma</span>
+            <span class="text-[8px] font-bold text-blue-300 uppercase">Paz</span>
         </div>
     </div>
 
-    <main id="muro" class="w-full max-w-md px-10 z-10 mt-10 mb-48 space-y-12">
+    <main id="muro" class="w-full max-w-md px-8 z-10 mt-6 mb-44 space-y-12 text-center">
         </main>
 
-    <footer class="fixed bottom-6 w-[92%] max-w-md bg-black/60 backdrop-blur-2xl border border-white/10 p-6 rounded-[2.5rem] z-20 shadow-2xl">
+    <footer class="fixed bottom-6 w-[92%] max-w-md bg-black/80 backdrop-blur-xl border border-white/10 p-5 rounded-[2.5rem] z-20 shadow-2xl">
         <div class="flex justify-around items-center">
-            <button onclick="playAudio('URL_SCARFACE')" class="btn-nav text-yellow-500">
-                <span class="text-xl block">🎬</span>
-                <span class="text-[8px] font-black uppercase">Scarface</span>
+            <button onclick="playAudio('https://ruwtsbccogrcuhnegarx.supabase.co/storage/v1/object/public/AUDIO/tus%20ojos%20son%20zafiros%20deslumbrantes.mp3')" class="audio-card text-purple-400">
+                <span class="text-2xl">🎤</span>
+                <span class="label">ZAFIROS</span>
             </button>
-            <button onclick="playAudio('URL_VOZ')" class="btn-nav text-purple-400">
-                <span class="text-xl block">🎤</span>
-                <span class="text-[8px] font-black uppercase">Tu Voz</span>
+            
+            <div class="h-10 w-[1px] bg-white/10"></div>
+            
+            <button onclick="playAudio('PON_AQUI_OTRO_LINK')" class="audio-card text-yellow-500">
+                <span class="text-2xl">🎬</span>
+                <span class="label">SCARFACE</span>
             </button>
-            <button onclick="playAudio('URL_ITACHI')" class="btn-nav text-red-500">
-                <span class="text-xl block">👁️</span>
-                <span class="text-[8px] font-black uppercase">Itachi</span>
+
+            <div class="h-10 w-[1px] bg-white/10"></div>
+
+            <button onclick="playAudio('PON_AQUI_LINK_ITACHI')" class="audio-card text-red-500">
+                <span class="text-2xl">👁️</span>
+                <span class="label">ITACHI</span>
             </button>
         </div>
     </footer>

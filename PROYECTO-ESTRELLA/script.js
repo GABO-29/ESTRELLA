@@ -12,19 +12,18 @@ async function cargarFrases() {
         const muro = document.getElementById('muro');
         muro.innerHTML = ''; 
         data.forEach(item => {
-            const div = document.createElement('div');
-            div.className = "fade-in-item";
-            div.innerHTML = `<p class="scarface-style">"${item.texto}"</p>`;
-            muro.appendChild(div);
+            const p = document.createElement('p');
+            p.className = "scarface-style animate-pulse";
+            p.innerText = `"${item.texto}"`;
+            muro.appendChild(p);
         });
-        document.getElementById('loader-text').innerText = "Tu galaxia está lista ✨";
     }
 }
 
 function playAudio(url) {
-    if(url.includes('URL_')) return;
+    if(!url || url.includes('PON_AQUI')) return;
     const audio = new Audio(url);
-    audio.volume = 0.5; // Muy importante para la clínica
+    audio.volume = 0.6;
     audio.play();
 }
 
