@@ -3,7 +3,6 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #0202
 #galaxyCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
 
 .glow-purple { text-shadow: 0 0 20px rgba(168, 85, 247, 0.8), 0 0 40px rgba(168, 85, 247, 0.4); }
-
 .glow-pink { text-shadow: 0 0 10px rgba(236, 72, 153, 0.8), 0 0 20px rgba(236, 72, 153, 0.4); }
 
 .char {
@@ -21,7 +20,6 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #0202
 
 .char:hover { transform: scale(1.1); }
 
-/* Animaciones de Flotado */
 .float { animation: floating 5s ease-in-out infinite; }
 .float-delayed { animation: floating 6s ease-in-out infinite; animation-delay: 2s; }
 
@@ -30,7 +28,6 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #0202
     50% { transform: translate(10px, -20px); }
 }
 
-/* Nota Mágica */
 .magic-note {
     position: absolute;
     background: rgba(255, 255, 255, 0.1);
@@ -51,8 +48,6 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #0202
     pointer-events: auto;
 }
 
-.note-icon { font-size: 3rem; filter: drop-shadow(0 0 10px white); }
-
 @keyframes growNote {
     0% { opacity: 0; transform: scale(0) rotate(-15deg); }
     100% { opacity: 1; transform: scale(1) rotate(0deg); }
@@ -65,16 +60,17 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #0202
     border: 1px solid #d3c4a0;
     box-shadow: inset 0 0 50px rgba(0,0,0,0.1), 0 10px 30px rgba(0,0,0,0.5);
     border-radius: 2px;
-    width: 450px;
+    width: 500px;
     min-height: 550px;
     color: #4a3728;
-    transform: rotate(-1deg);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    transform: rotate(-0.5deg);
 }
 
 .text-sepia-900 { color: #3e2b1c; }
 .text-sepia-800 { color: #5d4037; }
 
-/* Lluvia de corazones */
 .floating-heart {
     position: absolute;
     font-size: 1.5rem;

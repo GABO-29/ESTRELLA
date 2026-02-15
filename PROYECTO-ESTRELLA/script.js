@@ -1,4 +1,3 @@
-// --- 1. CONFIGURACIÓN DE LA GALAXIA ---
 const canvas = document.getElementById('galaxyCanvas');
 const ctx = canvas.getContext('2d');
 let stars = [];
@@ -34,58 +33,38 @@ function animateGalaxy() {
 }
 animateGalaxy();
 
-// --- 2. LÓGICA DE LAS NOTAS MÁGICAS ---
 function openMagicNote(e, text, icon) {
     e.stopPropagation();
     const container = document.getElementById('messages-container');
     container.innerHTML = ''; 
-    
     const note = document.createElement('div');
     note.className = 'magic-note';
-    note.innerHTML = `
-        <div class="note-icon">${icon}</div>
-        <div class="note-text">${text}</div>
-    `;
-    
-    let x = e.clientX - 100;
-    let y = e.clientY - 150;
-    if (x < 10) x = 10;
-    if (y < 10) y = 10;
-
-    note.style.left = `${x}px`;
-    note.style.top = `${y}px`;
-    
+    note.innerHTML = `<div class="note-icon">${icon}</div><div>${text}</div>`;
+    note.style.left = `${Math.min(e.clientX - 100, window.innerWidth - 230)}px`;
+    note.style.top = `${Math.max(e.clientY - 150, 10)}px`;
     container.appendChild(note);
 }
 
 function closeAllMessages(event) {
-    const container = document.getElementById('messages-container');
     if (!event.target.closest('.magic-note') && !event.target.closest('.old-letter')) {
-        container.innerHTML = '';
+        document.getElementById('messages-container').innerHTML = '';
     }
 }
 
-// --- 3. LÓGICA DEL CINE (ESCENAS Y CORAZONES) ---
 let heartInterval;
-
 function playScene(videoUrl) {
     const overlay = document.getElementById('video-overlay');
     const video = document.getElementById('scene-video');
-    const source = document.getElementById('video-source');
-    
-    source.src = videoUrl;
+    document.getElementById('video-source').src = videoUrl;
     video.load();
     overlay.classList.remove('hidden');
     video.play();
-    
     startHeartRain();
 }
 
 function closeVideo() {
-    const overlay = document.getElementById('video-overlay');
-    const video = document.getElementById('scene-video');
-    video.pause();
-    overlay.classList.add('hidden');
+    document.getElementById('video-overlay').classList.add('hidden');
+    document.getElementById('scene-video').pause();
     stopHeartRain();
 }
 
@@ -99,7 +78,6 @@ function startHeartRain() {
         heart.style.left = Math.random() * 100 + 'vw';
         heart.style.animationDuration = (Math.random() * 2 + 2) + 's';
         container.appendChild(heart);
-        
         setTimeout(() => heart.remove(), 4000);
     }, 150);
 }
@@ -109,16 +87,7 @@ function stopHeartRain() {
     document.getElementById('heart-rain').innerHTML = '';
 }
 
-// --- 4. LÓGICA DE LA CARTICA ---
-function openLetter() {
-    document.getElementById('letter-overlay').classList.remove('hidden');
-}
+function openLetter() { document.getElementById('letter-overlay').classList.remove('hidden'); }
+function closeLetter() { document.getElementById('letter-overlay').classList.add('hidden'); }
 
-function closeLetter() {
-    document.getElementById('letter-overlay').classList.add('hidden');
-}
-
-function playAudio(url) {
-    if(!url || url.includes('URL_')) return;
-    new Audio(url).play().catch(e => console.log(e));
-}
+function playAudio(url) { new Audio(url).play().catch(() => {}); }

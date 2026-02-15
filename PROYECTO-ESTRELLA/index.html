@@ -17,25 +17,43 @@
         </h2>
         
         <div class="relative p-2 rounded-3xl border-4 border-pink-500 bg-pink-500/10 shadow-[0_0_50px_rgba(236,72,153,0.5)]">
-            <div class="heart-arc absolute -top-10 left-0 w-full text-center text-3xl animate-bounce">
-                💖 ❤️ 💖 ❤️ 💖
-            </div>
-            
             <video id="scene-video" class="rounded-2xl max-w-[85vw] max-h-[55vh]" playsinline>
                 <source id="video-source" src="" type="video/mp4">
             </video>
             
+            <div class="heart-arc absolute -bottom-10 left-0 w-full text-center text-3xl animate-bounce">
+                💖 ❤️ 💖 ❤️ 💖
+            </div>
+
             <button onclick="closeVideo()" class="absolute -top-14 -right-2 text-white text-5xl font-bold">&times;</button>
         </div>
         <div id="heart-rain" class="pointer-events-none fixed inset-0"></div>
     </div>
 
     <div id="letter-overlay" class="fixed inset-0 z-[110] hidden flex items-center justify-center bg-black/80 backdrop-blur-sm">
-        <div class="old-letter relative p-8 md:p-12 shadow-2xl overflow-y-auto max-h-[80vh] max-w-[90vw]">
-            <button onclick="closeLetter()" class="absolute top-2 right-4 text-sepia-800 text-3xl font-bold">&times;</button>
-            <div id="letter-content" class="text-sepia-900 font-serif text-lg leading-relaxed italic">
-                <p>Mi querida Monsesita...</p>
-                <p>(Cargando tus palabras llenas de amor...)</p>
+        <div class="old-letter relative p-8 md:p-12 shadow-2xl overflow-y-auto max-h-[85vh] max-w-[90vw]">
+            <button onclick="closeLetter()" class="absolute top-4 right-6 text-sepia-800 text-4xl font-bold hover:scale-110 transition-transform">&times;</button>
+            
+            <div id="letter-content" class="text-sepia-900 font-serif italic">
+                <h3 class="text-center text-2xl font-bold mb-6 underline uppercase">Declaración de Amor</h3>
+                
+                <p class="mb-4">Hola Monse Monse, Monsesita preciosa, hermosa... y preciosa otra vez.</p>
+                
+                <p class="mb-4">Te has convertido en alguien sumamente importante para mí, y no encontré otra manera más pura de expresarme que a través de estas palabras escritas.</p>
+                
+                <p class="mb-4">Le agradezco a la vida —y por supuesto, te agradezco a ti— por demostrarme que siguen existiendo personas que valen muchísimo la pena. Tú eres pureza; brillas hasta sin querer y destacas por el simple hecho de ser auténtica. Generas en mí un impacto tan positivo que me haces querer esforzarme al máximo solo por verte sonreír y ser feliz.</p>
+                
+                <p class="mb-4">Quiero que sepas que, incluso en tus días grises, allí estaré para animarte o para hacer todo lo posible por lograrlo. Simplemente estaré para ti, porque no estás sola; si alguna vez olvidas el camino, yo te lo recordaré, y si crees que no puedes, yo te demostraré por qué tú sí puedes con todo.</p>
+                
+                <p class="mb-4">Para mí eres la perfección misma. No quiero cambiarte nada; solo quiero impulsarte para que logres todas tus metas y propósitos en la vida.</p>
+                
+                <p class="mb-4">Jamás quiero ser una carga; comprendo siempre tus ocupaciones y tus prioridades. Te admiro por el esfuerzo que haces a diario. Creo en ti y sé que eres capaz de lograr todo lo que te propongas.</p>
+                
+                <p class="mb-4">Cabe destacar que, si tuvieras un gatico, seguramente te lo robaría... no te rías de mí, pero es la verdad (no sería yo mismo si no dijera algo gracioso que no tenga nada que ver con el tema).</p>
+                
+                <p class="mb-4">Volviendo a lo nuestro: esto, más que una carta, son mis sentimientos expresados de esta forma. Quizás guardes esto como un recuerdo, quizás no; lo importante es que me atreví a hacer algo diferente. Creo que es más tonto aquel que no se atreve a expresarse ni a ir más allá.</p>
+                
+                <p class="text-right mt-8 font-bold text-xl">Te amo y feliz día del amor y la amistad.</p>
             </div>
         </div>
     </div>
@@ -48,16 +66,16 @@
     <div id="messages-container" class="fixed inset-0 z-50 pointer-events-none"></div>
 
     <div id="universe" class="relative w-full h-screen z-20">
-        <div class="char float" style="top: 20%; left: 15%;" onclick="openMagicNote(event, '¡MONSE MONSE! Eres mi universo entero! 💖', '🌸')">
+        <div class="char float" style="top: 20%; left: 15%;" onclick="openMagicNote(event, '¡MONSE MONSE! 💖', '🌸')">
             <img src="kuromi.png" alt="Kuromi">
         </div>
-        <div class="char float-delayed" style="top: 55%; left: 10%;" onclick="openMagicNote(event, '¡MONSE MONSE! Todo estará bien, te lo prometo 🐾', '🌿')">
+        <div class="char float-delayed" style="top: 55%; left: 10%;" onclick="openMagicNote(event, '¡MONSE MONSE! 🐾', '🌿')">
             <img src="snoopy.png" alt="Snoopy">
         </div>
-        <div class="char float" style="top: 15%; right: 20%;" onclick="openMagicNote(event, '¡MONSE MONSE! Te protejo desde las sombras 🥷', '🏮')">
+        <div class="char float" style="top: 15%; right: 20%;" onclick="openMagicNote(event, '¡MONSE MONSE! 🥷', '🏮')">
             <img src="itachi.png" alt="Itachi">
         </div>
-        <div class="char float-delayed" style="top: 50%; right: 15%;" onclick="openMagicNote(event, '¡MONSE MONSE! El mundo es tuyo, reina 🤵', '🌹')">
+        <div class="char float-delayed" style="top: 50%; right: 15%;" onclick="openMagicNote(event, '¡MONSE MONSE! 🤵', '🌹')">
             <img src="scarface.png" alt="Scarface">
         </div>
     </div>
