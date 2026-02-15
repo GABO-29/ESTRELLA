@@ -9,6 +9,22 @@
 </head>
 <body class="bg-[#020205] text-white min-h-screen overflow-hidden" onclick="closeAllMessages(event)">
 
+    <div id="door-overlay" class="fixed inset-0 z-[200] flex pointer-events-auto cursor-pointer" onclick="openDoors()">
+        <div id="left-door" class="w-1/2 h-full bg-[#050508] border-r border-pink-500/30 flex items-center justify-end">
+            <div class="loading-text-container pr-4">
+                <span class="text-pink-500 text-4xl animate-pulse">❤️</span>
+            </div>
+        </div>
+        <div id="right-door" class="w-1/2 h-full bg-[#050508] border-l border-pink-500/30 flex items-center justify-start">
+            <div class="loading-text-container pl-4">
+                <span class="text-pink-500 text-2xl font-serif italic tracking-widest uppercase">Cargando el amor...</span>
+            </div>
+        </div>
+        <div id="tap-instruction" class="absolute bottom-20 w-full text-center text-gray-500 text-sm tracking-[0.3em] animate-bounce">
+            TOCA PARA ABRIR TU REGALO
+        </div>
+    </div>
+
     <canvas id="galaxyCanvas"></canvas>
 
     <div class="fixed inset-0 flex items-center justify-center z-10 pointer-events-none">
@@ -21,16 +37,13 @@
         <h2 class="text-pink-400 font-serif italic text-2xl md:text-3xl mb-6 text-center px-4 glow-pink animate-pulse">
             "Tus ojos son zafiros deslumbrantes Monsesita"
         </h2>
-        
         <div class="relative p-2 rounded-3xl border-4 border-pink-500 bg-pink-500/10 shadow-[0_0_50px_rgba(236,72,153,0.5)]">
             <video id="scene-video" class="rounded-2xl max-w-[85vw] max-h-[55vh]" playsinline>
                 <source id="video-source" src="" type="video/mp4">
             </video>
-            
             <div class="heart-arc absolute -bottom-10 left-0 w-full text-center text-3xl animate-bounce">
                 💖 ❤️ 💖 ❤️ 💖
             </div>
-
             <button onclick="closeVideo()" class="absolute -top-14 -right-2 text-white text-5xl font-bold">&times;</button>
         </div>
         <div id="heart-rain" class="pointer-events-none fixed inset-0"></div>
@@ -39,9 +52,8 @@
     <div id="letter-overlay" class="fixed inset-0 z-[110] hidden flex items-center justify-center bg-black/80 backdrop-blur-sm">
         <div class="old-letter relative p-8 md:p-12 shadow-2xl overflow-y-auto max-h-[85vh] max-w-[90vw]">
             <button onclick="closeLetter()" class="absolute top-4 right-6 text-sepia-800 text-4xl font-bold hover:scale-110 transition-transform">&times;</button>
-            
             <div id="letter-content" class="text-sepia-900 font-serif italic">
-                <h3 class="text-center text-2xl font-bold mb-6 underline uppercase">Declaración de Amor</h3>
+                <h3 class="text-center text-2xl font-bold mb-6 underline uppercase">CARTICA PARA MONSESITA</h3>
                 <p class="mb-4">Hola Monse Monse, Monsesita preciosa, hermosa... y preciosa otra vez.</p>
                 <p class="mb-4">Te has convertido en alguien sumamente importante para mí, y no encontré otra manera más pura de expresarme que a través de estas palabras escritas.</p>
                 <p class="mb-4">Le agradezco a la vida —y por supuesto, te agradezco a ti— por demostrarme que siguen existiendo personas que valen muchísimo la pena. Tú eres pureza; brillas hasta sin querer y destacas por el simple hecho de ser auténtica. Generas en mí un impacto tan positivo que me haces querer esforzarme al máximo solo por verte sonreír y ser feliz.</p>

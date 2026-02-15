@@ -33,14 +33,19 @@ function animateGalaxy() {
 }
 animateGalaxy();
 
-// LÓGICA DE ARRASTRE MEJORADA
+// LÓGICA DE LAS PUERTAS
+function openDoors() {
+    const doorOverlay = document.getElementById('door-overlay');
+    doorOverlay.classList.add('opened');
+    setTimeout(() => {
+        doorOverlay.style.display = 'none';
+    }, 1500);
+}
+
+// LÓGICA DE ARRASTRE
 let activeItem = null;
-let currentX;
-let currentY;
-let initialX;
-let initialY;
-let xOffset = 0;
-let yOffset = 0;
+let currentX, currentY, initialX, initialY;
+let xOffset = 0, yOffset = 0;
 let isDragging = false;
 
 function startDrag(e) {
@@ -48,7 +53,6 @@ function startDrag(e) {
     const target = e.target.closest('.draggable');
     if (!target) return;
 
-    // Obtener transform actual si ya se movió
     const style = window.getComputedStyle(target);
     const matrix = new WebKitCSSMatrix(style.transform);
     xOffset = matrix.m41;
@@ -61,7 +65,6 @@ function startDrag(e) {
         initialX = e.clientX - xOffset;
         initialY = e.clientY - yOffset;
     }
-    
     activeItem = target;
 }
 
@@ -90,7 +93,7 @@ document.addEventListener("mouseup", endDrag);
 document.addEventListener("touchend", endDrag);
 
 function openMagicNote(e, text, icon) {
-    if (isDragging) return; // Si se estaba moviendo, no abre la nota
+    if (isDragging) return;
     e.stopPropagation();
     const container = document.getElementById('messages-container');
     container.innerHTML = ''; 

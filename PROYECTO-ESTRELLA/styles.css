@@ -2,6 +2,17 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #0202
 
 #galaxyCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
 
+/* ESTILOS DE LAS PUERTAS */
+#door-overlay { background: transparent; overflow: hidden; }
+#left-door, #right-door { 
+    transition: transform 1.5s cubic-bezier(0.7, 0, 0.3, 1); 
+    box-shadow: 0 0 50px rgba(0,0,0,1);
+    z-index: 201;
+}
+.opened #left-door { transform: translateX(-100%); }
+.opened #right-door { transform: translateX(100%); }
+.opened #tap-instruction { opacity: 0; transition: 0.5s; }
+
 .glow-purple { text-shadow: 0 0 20px rgba(168, 85, 247, 0.8), 0 0 40px rgba(168, 85, 247, 0.4); }
 .glow-pink { text-shadow: 0 0 15px rgba(236, 72, 153, 0.9), 0 0 30px rgba(236, 72, 153, 0.6); }
 
@@ -13,14 +24,8 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #0202
     user-select: none;
     touch-action: none;
 }
-
 .char:active { cursor: grabbing; }
-
-.char img { 
-    width: 130px; 
-    filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.4)); 
-    pointer-events: none;
-}
+.char img { width: 130px; filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.4)); pointer-events: none; }
 
 .magic-note {
     position: absolute;
@@ -77,11 +82,7 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #0202
 }
 
 .btn { 
-    font-size: 12px; 
-    font-weight: 900; 
-    letter-spacing: 1px; 
-    text-transform: uppercase; 
-    color: #f472b6;
-    transition: all 0.3s;
+    font-size: 12px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; 
+    color: #f472b6; transition: all 0.3s;
 }
 .btn:hover { transform: scale(1.1); color: white; }
