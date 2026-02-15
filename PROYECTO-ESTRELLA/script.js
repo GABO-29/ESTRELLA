@@ -38,7 +38,7 @@ animateGalaxy();
 function openMagicNote(e, text, icon) {
     e.stopPropagation();
     const container = document.getElementById('messages-container');
-    container.innerHTML = ''; // Cierra la anterior para no amontonar
+    container.innerHTML = ''; 
     
     const note = document.createElement('div');
     note.className = 'magic-note';
@@ -47,7 +47,6 @@ function openMagicNote(e, text, icon) {
         <div class="note-text">${text}</div>
     `;
     
-    // Posicionar cerca del toque
     let x = e.clientX - 100;
     let y = e.clientY - 150;
     if (x < 10) x = 10;
@@ -61,8 +60,7 @@ function openMagicNote(e, text, icon) {
 
 function closeAllMessages(event) {
     const container = document.getElementById('messages-container');
-    // Si toca fuera de la nota, se cierra
-    if (!event.target.closest('.magic-note')) {
+    if (!event.target.closest('.magic-note') && !event.target.closest('.old-letter')) {
         container.innerHTML = '';
     }
 }
@@ -111,7 +109,16 @@ function stopHeartRain() {
     document.getElementById('heart-rain').innerHTML = '';
 }
 
+// --- 4. LÓGICA DE LA CARTICA ---
+function openLetter() {
+    document.getElementById('letter-overlay').classList.remove('hidden');
+}
+
+function closeLetter() {
+    document.getElementById('letter-overlay').classList.add('hidden');
+}
+
 function playAudio(url) {
     if(!url || url.includes('URL_')) return;
-    new Audio(url).play();
+    new Audio(url).play().catch(e => console.log(e));
 }
