@@ -11,6 +11,12 @@
 
     <canvas id="galaxyCanvas"></canvas>
 
+    <div class="fixed inset-0 flex items-center justify-center z-10 pointer-events-none">
+        <h2 class="text-4xl md:text-5xl font-bold text-center px-6 text-pink-500 glow-pink animate-pulse font-serif italic">
+            FELIZ DIA DEL AMOR Y LA AMISTAD MI PRECIOSA
+        </h2>
+    </div>
+
     <div id="video-overlay" class="fixed inset-0 z-[100] hidden flex flex-col items-center justify-center bg-black/95 backdrop-blur-md">
         <h2 class="text-pink-400 font-serif italic text-2xl md:text-3xl mb-6 text-center px-4 glow-pink animate-pulse">
             "Tus ojos son zafiros deslumbrantes Monsesita"
@@ -36,23 +42,14 @@
             
             <div id="letter-content" class="text-sepia-900 font-serif italic">
                 <h3 class="text-center text-2xl font-bold mb-6 underline uppercase">Declaración de Amor</h3>
-                
                 <p class="mb-4">Hola Monse Monse, Monsesita preciosa, hermosa... y preciosa otra vez.</p>
-                
                 <p class="mb-4">Te has convertido en alguien sumamente importante para mí, y no encontré otra manera más pura de expresarme que a través de estas palabras escritas.</p>
-                
                 <p class="mb-4">Le agradezco a la vida —y por supuesto, te agradezco a ti— por demostrarme que siguen existiendo personas que valen muchísimo la pena. Tú eres pureza; brillas hasta sin querer y destacas por el simple hecho de ser auténtica. Generas en mí un impacto tan positivo que me haces querer esforzarme al máximo solo por verte sonreír y ser feliz.</p>
-                
                 <p class="mb-4">Quiero que sepas que, incluso en tus días grises, allí estaré para animarte o para hacer todo lo posible por lograrlo. Simplemente estaré para ti, porque no estás sola; si alguna vez olvidas el camino, yo te lo recordaré, y si crees que no puedes, yo te demostraré por qué tú sí puedes con todo.</p>
-                
                 <p class="mb-4">Para mí eres la perfección misma. No quiero cambiarte nada; solo quiero impulsarte para que logres todas tus metas y propósitos en la vida.</p>
-                
                 <p class="mb-4">Jamás quiero ser una carga; comprendo siempre tus ocupaciones y tus prioridades. Te admiro por el esfuerzo que haces a diario. Creo en ti y sé que eres capaz de lograr todo lo que te propongas.</p>
-                
-                <p class="mb-4">Cabe destacar que, si tuvieras un gatico, seguramente te lo robaría... no te rías de mí, pero es la verdad (no sería yo mismo si no dijera algo gracioso que no tenga nada que ver con el tema).</p>
-                
+                <p class="mb-4">Cabe destacar que, si tuvieras un gatico, seguramente te lo robaría... no te rías de mí, pero es la verdad.</p>
                 <p class="mb-4">Volviendo a lo nuestro: esto, más que una carta, son mis sentimientos expresados de esta forma. Quizás guardes esto como un recuerdo, quizás no; lo importante es que me atreví a hacer algo diferente. Creo que es más tonto aquel que no se atreve a expresarse ni a ir más allá.</p>
-                
                 <p class="text-right mt-8 font-bold text-xl">Te amo y feliz día del amor y la amistad.</p>
             </div>
         </div>
@@ -60,30 +57,25 @@
 
     <header class="fixed top-8 w-full text-center z-10 pointer-events-none">
         <h1 class="text-6xl font-black italic text-purple-500 glow-purple font-serif uppercase tracking-tighter">MONSESITA</h1>
-        <p class="text-gray-400 text-[12px] tracking-[0.3em] uppercase mt-2">Con mucho amor para ti</p>
     </header>
 
     <div id="messages-container" class="fixed inset-0 z-50 pointer-events-none"></div>
 
     <div id="universe" class="relative w-full h-screen z-20">
-        <div class="char float" style="top: 20%; left: 15%;" onclick="openMagicNote(event, 'Brillas más que las estrellas', '💫')">
+        <div class="char draggable" style="top: 20%; left: 10%;" onmousedown="startDrag(event)" ontouchstart="startDrag(event)" onclick="openMagicNote(event, 'Brillas más que las estrellas', '💫')">
             <img src="kuromi.png" alt="Kuromi">
         </div>
-        <div class="char float-delayed" style="top: 55%; left: 10%;" onclick="openMagicNote(event, 'Estás destinada a cosas grandes preciosa', '👑')">
+        <div class="char draggable" style="top: 60%; left: 15%;" onmousedown="startDrag(event)" ontouchstart="startDrag(event)" onclick="openMagicNote(event, 'Estás destinada a cosas grandes preciosa', '👑')">
             <img src="snoopy.png" alt="Snoopy">
         </div>
-        <div class="char float" style="top: 15%; right: 20%;" onclick="openMagicNote(event, 'Te protejo desde las sombras como Itachi', '🥷')">
-            <img src="itachi.png" alt="Itachi">
-        </div>
-        <div class="char float-delayed" style="top: 50%; right: 15%;" onclick="openMagicNote(event, 'El mundo es tuyo', '🌎💎')">
+        <div class="char draggable" style="top: 40%; right: 15%;" onmousedown="startDrag(event)" ontouchstart="startDrag(event)" onclick="openMagicNote(event, 'El mundo es tuyo', '🌎💎')">
             <img src="scarface.png" alt="Scarface">
         </div>
     </div>
 
-    <footer class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[95%] max-w-md bg-black/60 backdrop-blur-xl border border-white/10 p-5 rounded-[2.5rem] z-50 flex justify-around shadow-2xl">
+    <footer class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-sm bg-black/60 backdrop-blur-xl border border-white/10 p-5 rounded-[2.5rem] z-50 flex justify-around shadow-2xl">
         <button onclick="playScene('zafiros.mp4')" class="btn">🎤 ZAFIROS</button>
         <button onclick="openLetter()" class="btn">📜 CARTICA</button>
-        <button onclick="playAudio('itachi_audio.mp3')" class="btn text-red-500">👁️ ITACHI</button>
     </footer>
 
     <script src="script.js"></script>

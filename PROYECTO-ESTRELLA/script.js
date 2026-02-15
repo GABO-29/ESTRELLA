@@ -33,13 +33,63 @@ function animateGalaxy() {
 }
 animateGalaxy();
 
+// FUNCIONALIDAD ARRASTRAR (DRAG)
+let activeItem = null;
+let currentX;
+let currentY;
+let initialX;
+let initialY;
+let xOffset = 0;
+let yOffset = 0;
+
+function startDrag(e) {
+    if (e.type === "touchstart") {
+        initialX = e.touches[0].clientX - xOffset;
+        initialY = e.touches[0].clientY - yOffset;
+    } else {
+        initialX = e.clientX - xOffset;
+        initialY = e.clientY - yOffset;
+    }
+    if (e.target.classList.contains("draggable")) {
+        activeItem = e.target;
+    }
+}
+
+document.addEventListener("mousemove", drag);
+document.addEventListener("touchmove", drag);
+document.addEventListener("mouseup", endDrag);
+document.addEventListener("touchend", endDrag);
+
+function drag(e) {
+    if (activeItem) {
+        e.preventDefault();
+        if (e.type === "touchmove") {
+            currentX = e.touches[0].clientX - initialX;
+            currentY = e.touches[0].clientY - initialY;
+        } else {
+            currentX = e.clientX - initialX;
+            currentY = e.clientY - initialY;
+        }
+        xOffset = currentX;
+        yOffset = currentY;
+        activeItem.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+    }
+}
+
+function endDrag() {
+    initialX = currentX;
+    initialY = currentY;
+    activeItem = null;
+}
+
 function openMagicNote(e, text, icon) {
+    if (currentX !== initialX) return; // Evita abrir nota si se estaba arrastrando
     e.stopPropagation();
     const container = document.getElementById('messages-container');
     container.innerHTML = ''; 
     const note = document.createElement('div');
     note.className = 'magic-note';
-    note.innerHTML = `<div class="note-icon">${icon}</div><div>${text}</div>`;
+    note.innerHTML = `<div class="note-icon text-2xl">${icon}</div><div>${text}</div>`;
     note.style.left = `${Math.min(e.clientX - 100, window.innerWidth - 230)}px`;
     note.style.top = `${Math.max(e.clientY - 150, 10)}px`;
     container.appendChild(note);
@@ -89,5 +139,3 @@ function stopHeartRain() {
 
 function openLetter() { document.getElementById('letter-overlay').classList.remove('hidden'); }
 function closeLetter() { document.getElementById('letter-overlay').classList.add('hidden'); }
-
-function playAudio(url) { new Audio(url).play().catch(() => {}); }

@@ -1,31 +1,24 @@
-body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #020205; }
+body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #020205; font-family: 'Georgia', serif; }
 
 #galaxyCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
 
 .glow-purple { text-shadow: 0 0 20px rgba(168, 85, 247, 0.8), 0 0 40px rgba(168, 85, 247, 0.4); }
-.glow-pink { text-shadow: 0 0 10px rgba(236, 72, 153, 0.8), 0 0 20px rgba(236, 72, 153, 0.4); }
+.glow-pink { text-shadow: 0 0 15px rgba(236, 72, 153, 0.9), 0 0 30px rgba(236, 72, 153, 0.6); }
 
 .char {
     position: absolute;
-    cursor: pointer;
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: grab;
+    transition: transform 0.2s;
     z-index: 30;
+    user-select: none;
 }
+
+.char:active { cursor: grabbing; }
 
 .char img { 
-    width: 120px; 
-    filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.3)); 
+    width: 130px; 
+    filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.4)); 
     pointer-events: none;
-}
-
-.char:hover { transform: scale(1.1); }
-
-.float { animation: floating 5s ease-in-out infinite; }
-.float-delayed { animation: floating 6s ease-in-out infinite; animation-delay: 2s; }
-
-@keyframes floating {
-    0%, 100% { transform: translate(0, 0); }
-    50% { transform: translate(10px, -20px); }
 }
 
 .magic-note {
@@ -42,30 +35,28 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #0202
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    animation: growNote 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    animation: growNote 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     max-width: 220px;
     text-align: center;
     pointer-events: auto;
 }
 
 @keyframes growNote {
-    0% { opacity: 0; transform: scale(0) rotate(-15deg); }
-    100% { opacity: 1; transform: scale(1) rotate(0deg); }
+    0% { opacity: 0; transform: scale(0); }
+    100% { opacity: 1; transform: scale(1); }
 }
 
-/* ESTILO CARTA ANTIGUA */
 .old-letter {
     background: #f4ecd8;
     background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png');
     border: 1px solid #d3c4a0;
     box-shadow: inset 0 0 50px rgba(0,0,0,0.1), 0 10px 30px rgba(0,0,0,0.5);
-    border-radius: 2px;
+    border-radius: 4px;
     width: 500px;
-    min-height: 550px;
+    max-height: 85vh;
     color: #4a3728;
     font-size: 1.1rem;
     line-height: 1.6;
-    transform: rotate(-0.5deg);
 }
 
 .text-sepia-900 { color: #3e2b1c; }
@@ -81,7 +72,15 @@ body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #0202
 
 @keyframes heartFly {
     0% { transform: translateY(110vh) scale(0); opacity: 1; }
-    100% { transform: translateY(-10vh) scale(1.5) rotate(360deg); opacity: 0; }
+    100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
 }
 
-.btn { font-size: 10px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; }
+.btn { 
+    font-size: 12px; 
+    font-weight: 900; 
+    letter-spacing: 1px; 
+    text-transform: uppercase; 
+    color: #f472b6;
+    transition: all 0.3s;
+}
+.btn:hover { transform: scale(1.1); color: white; }
