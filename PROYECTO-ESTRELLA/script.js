@@ -33,7 +33,7 @@ function animateGalaxy() {
 }
 animateGalaxy();
 
-// FUNCIONALIDAD ARRASTRAR (DRAG)
+// LÓGICA DE ARRASTRE MEJORADA
 let activeItem = null;
 let currentX;
 let currentY;
@@ -41,8 +41,19 @@ let initialX;
 let initialY;
 let xOffset = 0;
 let yOffset = 0;
+let isDragging = false;
 
 function startDrag(e) {
+    isDragging = false;
+    const target = e.target.closest('.draggable');
+    if (!target) return;
+
+    // Obtener transform actual si ya se movió
+    const style = window.getComputedStyle(target);
+    const matrix = new WebKitCSSMatrix(style.transform);
+    xOffset = matrix.m41;
+    yOffset = matrix.m42;
+
     if (e.type === "touchstart") {
         initialX = e.touches[0].clientX - xOffset;
         initialY = e.touches[0].clientY - yOffset;
@@ -50,19 +61,14 @@ function startDrag(e) {
         initialX = e.clientX - xOffset;
         initialY = e.clientY - yOffset;
     }
-    if (e.target.classList.contains("draggable")) {
-        activeItem = e.target;
-    }
+    
+    activeItem = target;
 }
-
-document.addEventListener("mousemove", drag);
-document.addEventListener("touchmove", drag);
-document.addEventListener("mouseup", endDrag);
-document.addEventListener("touchend", endDrag);
 
 function drag(e) {
     if (activeItem) {
         e.preventDefault();
+        isDragging = true;
         if (e.type === "touchmove") {
             currentX = e.touches[0].clientX - initialX;
             currentY = e.touches[0].clientY - initialY;
@@ -70,20 +76,21 @@ function drag(e) {
             currentX = e.clientX - initialX;
             currentY = e.clientY - initialY;
         }
-        xOffset = currentX;
-        yOffset = currentY;
         activeItem.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
     }
 }
 
 function endDrag() {
-    initialX = currentX;
-    initialY = currentY;
     activeItem = null;
 }
 
+document.addEventListener("mousemove", drag);
+document.addEventListener("touchmove", drag, { passive: false });
+document.addEventListener("mouseup", endDrag);
+document.addEventListener("touchend", endDrag);
+
 function openMagicNote(e, text, icon) {
-    if (currentX !== initialX) return; // Evita abrir nota si se estaba arrastrando
+    if (isDragging) return; // Si se estaba moviendo, no abre la nota
     e.stopPropagation();
     const container = document.getElementById('messages-container');
     container.innerHTML = ''; 
